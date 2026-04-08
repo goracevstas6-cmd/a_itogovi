@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Энциклопедия космоса</title>
+    <link rel="stylesheet" href="stale.css" />
+<link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="manifest"
+      href="img\logo (1).png"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1 id="cruto">Энциклопедия космоса</h1>
+      <p>Ваш путеводитель по безграничной Вселенной</p>
+    </header>
+
+    <main>
+      <section class="hero-index">
+        <div class="hero-content">
+          <h2>Открой тайны звездного неба</h2>
+          <p>
+            Погрузитесь в изучение планет, созвездий и далеких галактик прямо
+            сейчас.
+          </p>
+          <div class="hero-buttons">
+            <a href="teori.html" class="cta-button">Начать обучение</a>
+            <a href="test.html" class="cta-button secondary"
+              >Проверить знания</a
+            >
+          </div>
+        </div>
+      </section>
+      <section id="interactive-facts">
+        <div class="fact-card">
+          <div class="fact-header">
+            <span class="fact-icon">🚀</span>
+            <h3>Интересный факт</h3>
+          </div>
+          <div class="fact-body">
+            <p id="fact-display">
+              Нажми на кнопку, чтобы узнать что-то невероятное о космосе!
+            </p>
+          </div>
+          <button id="next-fact-btn" onclick="getRandomFact()">
+            Узнать новый факт
+          </button>
+        </div>
+      </section>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔭</div>
+          <h3>Интерактивность</h3>
+          <p>Изучайте созвездия, нажимая на звезды и читая их историю.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛰️</div>
+          <h3>Актуальность</h3>
+          <p>Самые свежие данные о космических миссиях и открытиях.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Достижения</h3>
+          <p>Пройдите все тесты и станьте магистром космических наук.</p>
+        </div>
+      </div>
+    </main>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>КосмоЭнциклопедия</h3>
+          <p>
+            Интерактивный путеводитель по звездам, планетам и бесконечным
+            просторам нашей Вселенной.
+          </p>
+        </div>
+
+        <div class="footer-section links">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="indexs.html">Главная</a></li>
+            <li><a href="teori.html">Теория</a></li>
+            <li><a href="test.html">Тестирование</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section social">
+          <h4>Мы в сети</h4>
+          <div class="social-icons">
+            <a href="#" class="icon">🚀</a>
+            <a href="#" class="icon">🔭</a>
+            <a href="#" class="icon">🪐</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 Г.С. ММКЦТ «АКАДЕМИЯ ТОП» | Дизайн вдохновлен звездами
+        </p>
+      </div>
+    </footer>
+    <script>
+      const spaceFacts = [
+        "На Венере день длится дольше, чем год. Она вращается вокруг своей оси 243 земных дня, а вокруг Солнца — 225 дней.",
+        "Нейтронные звезды настолько плотные, что чайная ложка их вещества весила бы около миллиарда тонн — как целая гора.",
+        "Во Вселенной больше звезд, чем песчинок на всех пляжах Земли вместе взятых.",
+        "На Сатурне и Юпитере иногда идут дожди из алмазов из-за высокого давления в атмосфере.",
+        "Космонавты на МКС видят закат и рассвет 16 раз в сутки, так как станция облетает Землю каждые 90 минут.",
+        "Если два куска одного и того же металла соприкоснутся в глубоком космосе, они намертво сварятся друг с другом (холодная сварка).",
+        "Следы астронавтов на Луне не исчезнут миллионы лет, потому что там нет ветра или воды, чтобы их смыть.",
+        "В центре нашей Галактики находится сверхмассивная черная дыра Стрелец А*, которая в 4 миллиона раз тяжелее Солнца.",
+      ];
+
+      function getRandomFact() {
+        const display = document.getElementById("fact-display");
+
+        // Эффект затухания
+        display.classList.add("fade-out");
+
+        setTimeout(() => {
+          const randomIndex = Math.floor(Math.random() * spaceFacts.length);
+          display.innerText = spaceFacts[randomIndex];
+          // Возвращаем видимость
+          display.classList.remove("fade-out");
+        }, 500);
+      }
+
+      // Показываем случайный факт сразу при загрузке
+      window.onload = getRandomFact;
+    </script>
+    s
+  </body>
+</html>

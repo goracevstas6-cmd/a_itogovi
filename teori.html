@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Энциклопедия космоса</title>
+    <link rel="stylesheet" href="stale.css" />
+<link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="manifest"
+      href="img\logo (1).png"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1 id="cruto">Энциклопедия космоса</h1>
+      <p>Изучайте Вселенную и проверяйте свои знания</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="indexs.html">Назад</a></li>
+        <li><a href="test.html">Тестирование</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="theory">
+        <h2>Материалы для изучения</h2>
+        <p class="theory-intro">
+          Выберите интересующий вас раздел, чтобы погрузиться в изучение тайн
+          Вселенной:
+        </p>
+
+        <div class="theory-grid">
+          <a href="solar-system.html" class="theory-card">
+            <div class="card-icon">🪐</div>
+            <h3>Солнечная система</h3>
+            <p>
+              Изучите строение нашей системы: от раскаленного Солнца до ледяных
+              гигантов на окраине.
+            </p>
+            <span class="read-more">Перейти к изучению →</span>
+          </a>
+
+          <a href="stars.html" class="theory-card">
+            <div class="card-icon">✨</div>
+            <h3>Звезды и Созвездия</h3>
+            <p>
+              Жизненный цикл звезд, их классификация и самые известные созвездия
+              ночного неба.
+            </p>
+            <span class="read-more">Перейти к изучению →</span>
+          </a>
+
+          <a href="galaxies.html" class="theory-card">
+            <div class="card-icon">🌀</div>
+            <h3>Галактики</h3>
+            <p>
+              Млечный Путь, Андромеда и миллиарды других звездных систем в
+              бесконечном пространстве.
+            </p>
+            <span class="read-more">Перейти к изучению →</span>
+          </a>
+
+          <a href="history.html" class="theory-card">
+            <div class="card-icon">🚀</div>
+            <h3>История освоения</h3>
+            <p>
+              От первого полета Юрия Гагарина до современных миссий на Марс и
+              телескопа Джеймс Уэбб.
+            </p>
+            <span class="read-more">Перейти к изучению →</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="constellation-section">
+        <h2>Интерактивная карта звездного неба</h2>
+
+        <div class="constellation-controls">
+          <button onclick="renderConstellation('major')" class="nav-btn">
+            Большая Медведица
+          </button>
+          <button onclick="renderConstellation('minor')" class="nav-btn">
+            Малая Медведица
+          </button>
+          <button onclick="renderConstellation('cassiopeia')" class="nav-btn">
+            Кассиопея
+          </button>
+        </div>
+
+        <div class="constellation-container">
+          <div id="svg-wrapper"></div>
+
+          <div id="star-panel">
+            <h3 id="star-name">Выберите созвездие и звезду</h3>
+            <p id="star-description">
+              Нажмите на кнопки выше, чтобы сменить созвездие, или на звезды,
+              чтобы узнать детали.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        const data = {
+          major: {
+            title: "Большая Медведица",
+            viewBox: "0 0 800 450",
+            lines:
+              "100,150 220,180 350,220 480,240 480,350 700,330 680,210 480,240",
+            stars: [
+              {
+                cx: 100,
+                cy: 150,
+                r: 6,
+                name: "Алькаид",
+                desc: "Концевая звезда ручки ковша.",
+              },
+              {
+                cx: 220,
+                cy: 180,
+                r: 7,
+                name: "Мицар",
+                desc: "Двойная звезда, рядом виден Алькор.",
+              },
+              {
+                cx: 350,
+                cy: 220,
+                r: 6,
+                name: "Алиот",
+                desc: "Самая яркая звезда созвездия.",
+              },
+              {
+                cx: 480,
+                cy: 240,
+                r: 6,
+                name: "Мегрец",
+                desc: "Соединяет ручку с ковшом.",
+              },
+              {
+                cx: 480,
+                cy: 350,
+                r: 6,
+                name: "Фекда",
+                desc: "Нижний угол ковша.",
+              },
+              {
+                cx: 700,
+                cy: 330,
+                r: 8,
+                name: "Мерак",
+                desc: "Указывает путь к Полярной звезде.",
+              },
+              {
+                cx: 680,
+                cy: 210,
+                r: 8,
+                name: "Дубхе",
+                desc: "Вторая по яркости звезда ковша.",
+              },
+            ],
+          },
+          minor: {
+            title: "Малая Медведица",
+            viewBox: "0 0 800 450",
+            lines:
+              "150,100 250,120 320,180 400,220 550,220 550,300 400,300 400,220",
+            stars: [
+              {
+                cx: 150,
+                cy: 100,
+                r: 9,
+                name: "Полярная звезда",
+                desc: "Главный ориентир для путешественников, указывает на истинный север.",
+              },
+              {
+                cx: 250,
+                cy: 120,
+                r: 5,
+                name: "Йильдун",
+                desc: "Звезда в хвосте малого ковша.",
+              },
+              {
+                cx: 320,
+                cy: 180,
+                r: 5,
+                name: "Эпсилон",
+                desc: "Звезда созвездия Малой Медведицы.",
+              },
+              {
+                cx: 400,
+                cy: 220,
+                r: 5,
+                name: "Ахфа",
+                desc: "Звезда в чаше Малого Ковша.",
+              },
+              {
+                cx: 550,
+                cy: 220,
+                r: 7,
+                name: "Кохаб",
+                desc: "Яркая оранжевая звезда, «Страж Полюса».",
+              },
+              {
+                cx: 550,
+                cy: 300,
+                r: 7,
+                name: "Феркад",
+                desc: "Вторая яркая звезда в передней части чаши.",
+              },
+              {
+                cx: 400,
+                cy: 300,
+                r: 5,
+                name: "Дзета",
+                desc: "Звезда в основании чаши.",
+              },
+            ],
+          },
+          cassiopeia: {
+            title: "Кассиопея",
+            viewBox: "0 0 800 450",
+            lines: "150,250 250,150 400,200 550,100 650,200",
+            stars: [
+              {
+                cx: 150,
+                cy: 250,
+                r: 7,
+                name: "Каф",
+                desc: "Бело-желтый гигант, крайняя звезда буквы W.",
+              },
+              {
+                cx: 250,
+                cy: 150,
+                r: 8,
+                name: "Шедар",
+                desc: "Оранжевый гигант, вторая звезда в созвездии.",
+              },
+              {
+                cx: 400,
+                cy: 200,
+                r: 8,
+                name: "Нави",
+                desc: "Центральная звезда, переменный голубой гигант.",
+              },
+              {
+                cx: 550,
+                cy: 100,
+                r: 7,
+                name: "Рукбах",
+                desc: "Звезда в левой «коленке» Кассиопеи.",
+              },
+              {
+                cx: 650,
+                cy: 200,
+                r: 6,
+                name: "Сегин",
+                desc: "Завершает характерную фигуру созвездия.",
+              },
+            ],
+          },
+        };
+
+        function renderConstellation(key) {
+          const item = data[key];
+          let starsHtml = item.stars
+            .map(
+              (s) =>
+                `<circle class="star" cx="${s.cx}" cy="${s.cy}" r="${s.r}" 
+             onclick="showStarInfo('${s.name}', '${s.desc}')" />`,
+            )
+            .join("");
+
+          const svgHtml = `
+            <svg viewBox="${item.viewBox}" class="sky-svg">
+                <polyline points="${item.lines}" fill="none" stroke="rgba(77, 184, 255, 0.3)" stroke-width="2" />
+                ${starsHtml}
+            </svg>`;
+
+          document.getElementById("svg-wrapper").innerHTML = svgHtml;
+          document.getElementById("star-name").innerText = item.title;
+          document.getElementById("star-description").innerText =
+            "Нажмите на звезду, чтобы узнать подробности.";
+        }
+
+        function showStarInfo(name, desc) {
+          document.getElementById("star-name").innerText = name;
+          document.getElementById("star-description").innerText = desc;
+        }
+
+        // Запуск при загрузке
+        renderConstellation("major");
+      </script>
+    </main>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>КосмоЭнциклопедия</h3>
+          <p>
+            Интерактивный путеводитель по звездам, планетам и бесконечным
+            просторам нашей Вселенной.
+          </p>
+        </div>
+
+        <div class="footer-section links">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="indexs.html">Главная</a></li>
+            <li><a href="teori.html">Теория</a></li>
+            <li><a href="test.html">Тестирование</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section social">
+          <h4>Мы в сети</h4>
+          <div class="social-icons">
+            <a href="#" class="icon">🚀</a>
+            <a href="#" class="icon">🔭</a>
+            <a href="#" class="icon">🪐</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 Г.С. ММКЦТ «АКАДЕМИЯ ТОП» | Дизайн вдохновлен звездами
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

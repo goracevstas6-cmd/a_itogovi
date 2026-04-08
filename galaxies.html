@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галактики - Энциклопедия космоса</title>
+    <link rel="stylesheet" href="stale.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
+    <style>
+        .galaxy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .galaxy-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #4db8ff;
+            border-radius: 15px;
+            padding: 20px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .galaxy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(77, 184, 255, 0.5);
+        }
+
+        .galaxy-type-badge {
+            display: inline-block;
+            background: #4db8ff;
+            color: black;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .galaxy-icon {
+            font-size: 3em;
+            margin: 15px 0;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="cruto">Галактики</h1>
+        <p>Гигантские звездные острова в океане Вселенной</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="indexs.html">Главная</a></li>
+            <li><a href="teori.html">Назад к теории</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Типы галактик</h2>
+            <p>Галактики различаются по своей форме и структуре. Эдвин Хаббл классифицировал их на несколько основных типов:</p>
+            
+            
+
+            <div class="galaxy-grid">
+                <div class="galaxy-card">
+                    <span class="galaxy-type-badge">Спиральные</span>
+                    <span class="galaxy-icon">🌀</span>
+                    <h3>Млечный Путь</h3>
+                    <p>Наша родная галактика. Имеет выраженные рукава, в одном из которых находится Солнечная система.</p>
+                </div>
+
+                <div class="galaxy-card">
+                    <span class="galaxy-type-badge">Эллиптические</span>
+                    <span class="galaxy-icon">⚪</span>
+                    <h3>M87</h3>
+                    <p>Гигантская галактика, почти лишенная пыли. В её центре находится одна из самых известных черных дыр.</p>
+                </div>
+
+                <div class="galaxy-card">
+                    <span class="galaxy-type-badge">Неправильные</span>
+                    <span class="galaxy-icon">☁️</span>
+                    <h3>Магеллановы Облака</h3>
+                    <p>Галактики без четкой формы, часто являющиеся спутниками более крупных звездных систем.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Интересный факт</h2>
+            <div id="fact-display" style="text-align: center; font-style: italic; min-height: 50px;">
+                Андромеда — ближайшая к нам крупная галактика, она движется навстречу Млечному Пути со скоростью 110 км/с.
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>КосмоЭнциклопедия</h3>
+                <p>Интерактивный путеводитель по просторам нашей Вселенной.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="indexs.html">Главная</a></li>
+                    <li><a href="teori.html">Теория</a></li>
+                    <li><a href="test.html">Тестирование</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" style="text-align: center; padding: 10px;">
+            &copy; 2024 КосмоЭнциклопедия
+        </div>
+    </footer>
+</body>
+</html>

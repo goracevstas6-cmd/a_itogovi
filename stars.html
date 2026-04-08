@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звезды и Созвездия - Энциклопедия космоса</title>
+    <link rel="stylesheet" href="stale.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
+    <style>
+        /* Дополнительные стили специально для страницы звезд */
+        .stars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .star-type-card {
+            background: rgba(10, 10, 30, 0.8);
+            border-left: 5px solid #4db8ff;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            transition: 0.3s;
+        }
+
+        .star-type-card:hover {
+            background: rgba(77, 184, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .star-temp {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #4db8ff;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .lifecycle-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px dashed rgba(77, 184, 255, 0.5);
+            margin: 40px 0;
+        }
+
+        .lifecycle-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .arrow {
+            color: #4db8ff;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="cruto">Звезды и Созвездия</h1>
+        <p>От рождения в туманностях до финального взрыва сверхновой</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="indexs.html">Главная</a></li>
+            <li><a href="teori.html">Назад к теории</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Жизненный цикл звезды</h2>
+            <p>Звезды не вечны. Они рождаются, эволюционируют и умирают в зависимости от своей начальной массы.</p>
+            
+            <div class="lifecycle-box">
+                <div class="lifecycle-steps">
+                    <div class="step">
+                        <span style="font-size: 2rem;">☁️</span>
+                        <p>Туманность</p>
+                    </div>
+                    <div class="arrow">➔</div>
+                    <div class="step">
+                        <span style="font-size: 2rem;">☀️</span>
+                        <p>Звезда (как Солнце)</p>
+                    </div>
+                    <div class="arrow">➔</div>
+                    <div class="step">
+                        <span style="font-size: 2.5rem; color: orange;">🟠</span>
+                        <p>Красный гигант</p>
+                    </div>
+                    <div class="arrow">➔</div>
+                    <div class="step">
+                        <span style="font-size: 2rem;">⚪</span>
+                        <p>Белый карлик</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Классификация по цвету и температуре</h2>
+            <p>Цвет звезды напрямую зависит от температуры её поверхности. Астрономы используют спектральные классы.</p>
+            
+            <div class="stars-grid">
+                <div class="star-type-card">
+                    <span class="star-temp">30 000 — 60 000 K</span>
+                    <h3>Голубые гиганты</h3>
+                    <p>Самые горячие и массивные звезды. Живут недолго, но светят ярче всех. Пример: <b>Ригель</b>.</p>
+                </div>
+
+                <div class="star-type-card" style="border-left-color: #fff200;">
+                    <span class="star-temp">5 000 — 6 000 K</span>
+                    <h3>Желтые карлики</h3>
+                    <p>Стабильные звезды среднего размера. Наше <b>Солнце</b> — типичный представитель этого класса.</p>
+                </div>
+
+                <div class="star-type-card" style="border-left-color: #ff4d4d;">
+                    <span class="star-temp">2 500 — 3 500 K</span>
+                    <h3>Красные карлики</h3>
+                    <p>Самые маленькие и холодные звезды. Они могут светить триллионы лет. Пример: <b>Проксима Центавра</b>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Зачем нужны созвездия?</h2>
+            <p>Созвездия — это не реальные группы звезд, а проекции на небесную сферу. Древние люди использовали их для навигации и сельского хозяйства.</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="teori.html#constellation-section" class="cta-button">Посмотреть карту созвездий</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>КосмоЭнциклопедия</h3>
+                <p>Интерактивный путеводитель по звездам и планетам.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="indexs.html">Главная</a></li>
+                    <li><a href="teori.html">Теория</a></li>
+                    <li><a href="test.html">Тестирование</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Энциклопедия Космоса</p>
+        </div>
+    </footer>
+</body>
+</html>

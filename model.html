@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Солнечная Система - Энциклопедия космоса</title>
+    <link rel="stylesheet" href="stale.css" />
+<link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img\logo (1).png"
+    />
+    <link
+      rel="manifest"
+      href="img\logo (1).png"
+    />
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: 'Segoe UI', sans-serif; }
+        canvas { display: block; }
+        
+        /* Стили поверх 3D сцены */
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            pointer-events: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        h1 { margin: 0; color: #4db8ff; font-size: 24px; }
+        
+        .back-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(77, 184, 255, 0.2);
+            color: #4db8ff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: 1px solid #4db8ff;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+            pointer-events: all;
+        }
+        
+        .back-link:hover {
+            background: #4db8ff;
+            color: black;
+        }
+
+        .controls-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8em;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 15px;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+  <ul style="display: flex; gap: 20px; list-style: none; padding: 0;">
+    <li><a href="teori.html" class="nav-btn" style="text-decoration: none;">Назад к теории</a></li>
+  </ul>
+</nav>
+    <div id="ui">
+        <h1>Солнечная система</h1>
+        <p>Интерактивная 3D визуализация</p>
+    </div>
+
+    <a href="teori.html" class="back-link">← Назад к теории</a>
+
+    <div class="controls-hint">
+        ЛКМ: Вращение | Колесико: Зум
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        let scene, camera, renderer, sun;
+        const planets = [];
+
+        const planetData = [
+            { name: "Меркурий", color: 0xA5A5A5, size: 0.8, distance: 15, speed: 0.02 },
+            { name: "Венера", color: 0xE3BB76, size: 1.2, distance: 22, speed: 0.012 },
+            { name: "Земля", color: 0x2271b3, size: 1.2, distance: 30, speed: 0.01 },
+            { name: "Марс", color: 0xe27b58, size: 0.9, distance: 38, speed: 0.008 },
+            { name: "Юпитер", color: 0xD39C7E, size: 3.5, distance: 55, speed: 0.004 },
+            { name: "Сатурн", color: 0xC5AB6E, size: 3.0, distance: 75, speed: 0.002, hasRings: true },
+            { name: "Уран", color: 0xBBE1E4, size: 1.8, distance: 92, speed: 0.0015 },
+            { name: "Нептун", color: 0x6081FF, size: 1.7, distance: 105, speed: 0.001 }
+        ];
+
+        function init() {
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 60, 100);
+            camera.lookAt(0, 0, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.body.appendChild(renderer.domElement);
+
+            // Свет
+            const ambientLight = new THREE.AmbientLight(0x404040, 2); 
+            scene.add(ambientLight);
+
+            const sunLight = new THREE.PointLight(0xffffff, 3, 300);
+            scene.add(sunLight);
+
+            // Звезды
+            const starGeometry = new THREE.BufferGeometry();
+            const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7 });
+            const starVertices = [];
+            for (let i = 0; i < 7000; i++) {
+                starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
+            }
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            scene.add(new THREE.Points(starGeometry, starMaterial));
+
+            // Солнце
+            const sunGeo = new THREE.SphereGeometry(8, 32, 32);
+            const sunMat = new THREE.MeshBasicMaterial({ color: 0xFFD700 });
+            sun = new THREE.Mesh(sunGeo, sunMat);
+            scene.add(sun);
+
+            // Планеты
+            planetData.forEach(data => {
+                // Линия орбиты
+                const orbitCurve = new THREE.EllipseCurve(0, 0, data.distance, data.distance);
+                const points = orbitCurve.getPoints(100);
+                const orbitGeo = new THREE.BufferGeometry().setFromPoints(points);
+                const orbitMat = new THREE.LineBasicMaterial({ color: 0x333333 });
+                const orbitLine = new THREE.LineLoop(orbitGeo, orbitMat);
+                orbitLine.rotation.x = Math.PI / 2;
+                scene.add(orbitLine);
+
+                // Объект планеты
+                const planetGeo = new THREE.SphereGeometry(data.size, 32, 32);
+                const planetMat = new THREE.MeshPhongMaterial({ color: data.color, shininess: 10 });
+                const planetMesh = new THREE.Mesh(planetGeo, planetMat);
+                
+                const planetGroup = new THREE.Group();
+                scene.add(planetGroup);
+                planetGroup.add(planetMesh);
+                planetMesh.position.x = data.distance;
+
+                if (data.hasRings) {
+                    const ringGeo = new THREE.RingGeometry(data.size + 1, data.size + 3, 32);
+                    const ringMat = new THREE.MeshBasicMaterial({ color: 0x888888, side: THREE.DoubleSide, transparent: true, opacity: 0.5 });
+                    const ring = new THREE.Mesh(ringGeo, ringMat);
+                    ring.rotation.x = Math.PI / 2;
+                    planetMesh.add(ring);
+                }
+
+                planets.push({ mesh: planetMesh, group: planetGroup, speed: data.speed, angle: Math.random() * Math.PI * 2 });
+            });
+
+            // Интерактив (упрощенный)
+            let isDragging = false;
+            let prevMouse = { x: 0, y: 0 };
+            window.addEventListener('mousedown', () => isDragging = true);
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const deltaX = e.clientX - prevMouse.x;
+                    const deltaY = e.clientY - prevMouse.y;
+                    camera.position.x += deltaX * 0.1;
+                    camera.position.y += deltaY * 0.1;
+                    camera.lookAt(0,0,0);
+                }
+                prevMouse = { x: e.clientX, y: e.clientY };
+            });
+
+            window.addEventListener('wheel', (e) => {
+                camera.position.multiplyScalar(1 + (e.deltaY * 0.001));
+            });
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            sun.rotation.y += 0.002;
+            planets.forEach(p => {
+                p.angle += p.speed;
+                p.group.rotation.y = p.angle;
+                p.mesh.rotation.y += 0.01;
+            });
+            renderer.render(scene, camera);
+        }
+
+        init();
+    </script>
+
+    <footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>КосмоЭнциклопедия</h3>
+            <p>Интерактивный путеводитель по звездам, планетам и бесконечным просторам нашей Вселенной.</p>
+        </div>
+        
+        <div class="footer-section links">
+            <h4>Навигация</h4>
+            <ul>
+                <li><a href="indexs.html">Главная</a></li>
+                <li><a href="teori.html">Теория</a></li>
+                <li><a href="test.html">Тестирование</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section social">
+            <h4>Мы в сети</h4>
+            <div class="social-icons">
+                <a href="#" class="icon">🚀</a>
+                <a href="#" class="icon">🔭</a>
+                <a href="#" class="icon">🪐</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Г.С. ММКЦТ «АКАДЕМИЯ ТОП» | Дизайн вдохновлен звездами</p>
+    </div>
+</footer>
+</body>
+</html>

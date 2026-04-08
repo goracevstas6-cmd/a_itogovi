@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История освоения - Энциклопедия космоса</title>
+    <link rel="stylesheet" href="stale.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
+    <style>
+        /* Стили для временной шкалы */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: #4db8ff;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #000;
+            border: 4px solid #4db8ff;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .right::after { left: -10px; }
+
+        .content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(77, 184, 255, 0.3);
+            position: relative;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .content:hover {
+            background: rgba(77, 184, 255, 0.1);
+            box-shadow: 0 0 15px rgba(77, 184, 255, 0.3);
+        }
+
+        .date {
+            font-weight: bold;
+            color: #4db8ff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container::after { left: 21px; }
+            .right { left: 0%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="cruto">История освоения космоса</h1>
+        <p>От первого спутника до планов на Марс</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="indexs.html">Главная</a></li>
+            <li><a href="teori.html">Теория</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Хронология великих открытий</h2>
+            <p>Человечество всегда мечтало дотянуться до звезд. Вот ключевые вехи, которые изменили наше представление о мире.</p>
+
+            <div class="timeline">
+                <div class="container left">
+                    <div class="content">
+                        <span class="date">4 октября 1957</span>
+                        <h3>Спутник-1</h3>
+                        <p>СССР запустил первый в мире искусственный спутник Земли, открыв космическую эру.</p>
+                    </div>
+                </div>
+
+                <div class="container right">
+                    <div class="content">
+                        <span class="date">12 апреля 1961</span>
+                        <h3>Первый человек в космосе</h3>
+                        <p>Юрий Гагарин на корабле «Восток-1» совершил один виток вокруг Земли.</p>
+                    </div>
+                </div>
+
+                <div class="container left">
+                    <div class="content">
+                        <span class="date">20 июля 1969</span>
+                        <h3>Высадка на Луну</h3>
+                        <p>Нил Армстронг и Эдвин Олдрин стали первыми людьми, ступившими на поверхность другого небесного тела.</p>
+                    </div>
+                </div>
+
+                <div class="container right">
+                    <div class="content">
+                        <span class="date">1990 год</span>
+                        <h3>Телескоп Хаббл</h3>
+                        <p>Запуск орбитальной обсерватории, которая позволила нам увидеть самые далекие уголки Вселенной.</p>
+                    </div>
+                </div>
+
+                <div class="container left">
+                    <div class="content">
+                        <span class="date">2021 год</span>
+                        <h3>Джеймс Уэбб</h3>
+                        <p>Запуск самого мощного инфракрасного телескопа для изучения формирования первых звезд и галактик.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center;">
+            <h2>Будущее: Марс и за его пределы</h2>
+            <p>Сегодня ученые работают над созданием колоний на Луне и отправкой первого человека на Марс в ближайшие десятилетия.</p>
+            
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>КосмоЭнциклопедия</h3>
+                <p>Ваш гид по истории и будущему человечества в космосе.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="indexs.html">Главная</a></li>
+                    <li><a href="teori.html">Теория</a></li>
+                    <li><a href="test.html">Тестирование</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" style="text-align: center; padding: 15px;">
+            <p>&copy; 2026 Энциклопедия Космоса</p>
+        </div>
+    </footer>
+</body>
+</html>

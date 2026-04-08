@@ -1,0 +1,484 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    color: white;
+    background-color: #222; /* Заглушка, чтобы не было фиолетовых вспышек */
+    background-image: url('img/fon.gif'); /* Проверьте путь: ./ или ../ */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Чтобы фон растянулся, даже если нет текста */
+}
+footer{
+    background-color: rgb(34, 34, 34);
+    padding: 10px;
+}
+
+header {
+    background-color: black;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: #4db8ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(22, 22, 22, 0.575);
+    border-radius: 10px;
+}
+
+.theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.theory-intro {
+    text-align: center;
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #4db8ff;
+}
+
+/* Стили отдельной карточки */
+.theory-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(77, 184, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none; /* Убираем подчеркивание ссылки */
+    color: white;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.theory-card:hover {
+    transform: translateY(-5px);
+    background: rgba(77, 184, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-color: #4db8ff;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.theory-card h3 {
+    margin: 0 0 10px 0;
+    color: #4db8ff;
+}
+
+.theory-card p {
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #4db8ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Стили для контейнера теста */
+#test {
+    text-align: center;
+}
+
+.test-description {
+    margin-bottom: 25px;
+    color: #ccc;
+}
+
+.google-form-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Ограничиваем ширину для удобства чтения */
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden; /* Скругляем углы у самого iframe */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.google-form-container iframe {
+    border: none;
+    display: block;
+    margin: 0 auto; /* Добавляем центрирование самого iframe внутри контейнера */
+    max-width: 100%; /* Чтобы форма не обрезалась на узких экранах */
+}
+
+/* Стили для карты созвездия */
+.constellation-container {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(77, 184, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.sky-svg {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 5px rgba(77, 184, 255, 0.2));
+}
+
+.star {
+    fill: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.star:hover {
+    fill: #4db8ff;
+    r: 10; /* Увеличение при наведении */
+    filter: drop-shadow(0 0 10px #4db8ff);
+}
+
+#star-panel {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid rgba(77, 184, 255, 0.3);
+    border-radius: 5px;
+    transition: border-color 0.5s ease;
+}
+
+#star-name {
+    color: #4db8ff;
+    margin-top: 0;
+}
+
+#star-description {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #eee;
+}
+.constellation-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    background: rgba(77, 184, 255, 0.1);
+    border: 1px solid #4db8ff;
+    color: #4db8ff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #4db8ff;
+    color: black;
+    box-shadow: 0 0 15px rgba(77, 184, 255, 0.5);
+}
+
+/* Стили для плавности появления SVG */
+#svg-wrapper {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Стили для главной страницы */
+.hero-index {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/hero-bg.jpg'); /* Если есть картинка */
+    background-size: cover;
+    border: 1px solid rgba(77, 184, 255, 0.3);
+    margin-bottom: 40px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    color: #4db8ff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px rgba(77, 184, 255, 0.5);
+}
+
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-button {
+    padding: 12px 30px;
+    background: #4db8ff;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: #4db8ff;
+    border: 2px solid #4db8ff;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(77, 184, 255, 0.6);
+}
+
+/* Сетка преимуществ */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    background: rgba(77, 184, 255, 0.1);
+    border-color: #4db8ff;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Эффект мерцания звезд на фоне всей системы */
+.planet-display::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(white, rgba(255,255,255,0) 2px);
+    background-size: 50px 50px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* Улучшенный футер */
+.main-footer {
+    background: linear-gradient(to top, #000 0%, #0a0a0a 100%);
+    color: #fff;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(77, 184, 255, 0.3);
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h3, .footer-section h4 {
+    color: #4db8ff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #eee;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-section ul li a:hover {
+    color: #4db8ff;
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons .icon {
+    font-size: 1.5rem;
+    text-decoration: none;
+    filter: grayscale(1);
+    transition: 0.3s;
+}
+
+.social-icons .icon:hover {
+    filter: grayscale(0);
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: #666;
+}
+
+#interactive-facts {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.fact-card {
+    background: rgba(10, 10, 25, 0.8);
+    border: 2px solid #4db8ff;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(77, 184, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.fact-header h3 {
+    color: #4db8ff;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.fact-icon {
+    font-size: 2.5rem;
+    display: block;
+}
+
+.fact-body {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fact-display {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #e0e0e0;
+    transition: opacity 0.5s ease; /* Для плавного исчезновения/появления */
+}
+
+#next-fact-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 2px solid #4db8ff;
+    color: #4db8ff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+#next-fact-btn:hover {
+    background: #4db8ff;
+    color: #000;
+    box-shadow: 0 0 15px #4db8ff;
+}
+
+/* Анимация для текста */
+.fade-out {
+    opacity: 0;
+}
+
+/* Контейнер для формы */
+.google-form-wrapper {
+    position: relative;
+    background: rgba(255, 255, 255, 0.9); /* Светлый фон, чтобы текст формы читался */
+    border: 3px solid #4db8ff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(77, 184, 255, 0.4);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Стилизация заголовка в секции теста */
+#test-section h2 {
+    text-align: center;
+    color: #4db8ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+/* Текст описания */
+.theory-intro {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #bbb;
+}
+
+/* Анимация загрузки, пока форма подгружается */
+.form-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-weight: bold;
+    z-index: -1; /* Будет видна только пока iframe прозрачный */
+}
+
+/* Делаем iframe адаптивным */
+.google-form-wrapper iframe {
+    display: block;
+    width: 100%;
+}
